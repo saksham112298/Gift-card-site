@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enter Amount</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1 id="brand-title">Gift Card</h1>
+  <p>Enter the amount:</p>
+  <input type="number" id="amount" placeholder="Enter amount" />
+  <br><br>
+  <button onclick="goToPayment()">Continue to Payment</button>
+
+  <script>
+    const brand = localStorage.getItem("brand");
+    document.getElementById("brand-title").innerText = brand + " Gift Card";
+
+    function goToPayment() {
+      const amt = document.getElementById("amount").value;
+      localStorage.setItem("amount", amt);
+      location.href = "pay.html";
+    }
+  </script>
+</body>
+</html>
