@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Payment for <span id="brand"></span> - ₹<span id="amount"></span></h1>
+  <p>Select a payment method:</p>
+
+  <select id="method" onchange="showFields()">
+    <option value="">--Select--</option>
+    <option value="upi">UPI</option>
+    <option value="card">Credit/Debit Card</option>
+  </select>
+
+  <div id="upi-box" style="display:none;">
+    <input type="text" placeholder="Enter UPI ID" />
+  </div>
+
+  <div id="card-box" style="display:none;">
+    <input type="text" placeholder="Card Number" /><br>
+    <input type="text" placeholder="MM/YY" /><br>
+    <input type="text" placeholder="CVV" />
+  </div>
+
+  <br>
+  <button onclick="makePayment()">Pay</button>
+
+  <script>
+    document.getElementById("brand").innerText = localStorage.getItem("brand");
+    document.getElementById("amount").innerText = localStorage.getItem("amount");
+
+    function showFields() {
+      const method = document.getElementById("method").value;
+      document.getElementById("upi-box").style.display = (method === "upi") ? "block" : "none";
+      document.getElementById("card-box").style.display = (method === "card") ? "block" : "none";
+    }
+
+    function makePayment() {
+      alert("Processing payment...");
+      setTimeout(() => {
+        location.href = "success.html";
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
