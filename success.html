@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Successful</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .success-box {
+      text-align: center;
+      padding: 30px;
+      background: #e6ffe6;
+      border-radius: 10px;
+      margin: 20px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    .gift-code {
+      font-size: 22px;
+      font-weight: bold;
+      color: green;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="success-box">
+    <h1>Payment Successful!</h1>
+    <img id="brand-logo" src="" width="120" /><br>
+    <p>Here is your gift card code:</p>
+    <div class="gift-code" id="gift-code">XXXX-XXXX-XXXX</div>
+  </div>
+
+  <script>
+    const brand = localStorage.getItem("brand");
+    const logos = {
+      "Amazon": "images/amazon.png",
+      "Flipkart": "images/flipkart.png",
+      "BookMyShow": "images/bookmyshow.png"
+    };
+
+    document.getElementById("brand-logo").src = logos[brand] || "";
+    
+    function generateCode() {
+      let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let code = "";
+      for (let i = 0; i < 12; i++) {
+        code += chars[Math.floor(Math.random() * chars.length)];
+      }
+      return code.match(/.{1,4}/g).join("-");
+    }
+
+    document.getElementById("gift-code").innerText = generateCode();
+  </script>
+</body>
+</html>
